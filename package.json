@@ -1,0 +1,26 @@
+{
+  "name": "chat-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "frontend": "npm start --prefix frontend",
+    "backend": "npm start  --prefix backend",
+    "dev": "concurrently \"npm run frontend\" \"npm run backend\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SavalanQorxmaz/chat-project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SavalanQorxmaz/chat-project/issues"
+  },
+  "homepage": "https://github.com/SavalanQorxmaz/chat-project#readme",
+  "dependencies": {
+    "concurrently": "^8.2.0"
+  }
+}
