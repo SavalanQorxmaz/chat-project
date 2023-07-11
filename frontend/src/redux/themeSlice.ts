@@ -1,4 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit'
+import { localStorageObjectType } from '../types'
 
 
 interface themeType {
@@ -8,20 +9,18 @@ interface themeType {
     }
     
 }
-interface myObjectType {
-    theme?: 'light' | 'dark'
-}
+
 
 
 let myProjectLocalStorage = localStorage.getItem('my-project')
-let myObject:myObjectType = {}
+let myObject:localStorageObjectType = {}
 
 if(myProjectLocalStorage !== null){
     myObject = JSON.parse(myProjectLocalStorage)
 
 }
 else {
-    myObject.theme = 'light'
+    myObject = {...myObject, ['theme']: 'light'}
     
     localStorage.setItem('my-project', JSON.stringify(myObject))
 }
