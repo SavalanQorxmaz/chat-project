@@ -5,10 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "install":  " npm install &&cd frontend && npm install && cd.. &&  cd backend && npm install && cd.. " ,
+   
     "frontend": "npm start --prefix frontend",
     "backend": "npm start  --prefix backend",
-    "dev": "concurrently \"npm run frontend\" \"npm run backend\"",
-    "allModulesInstall": "cd frontend && npm install && cd.. &&  cd backend && npm install && cd.. && npm install " 
+     "dev": "concurrently \"npm run frontend\" \"npm run backend\""
   },
   "repository": {
     "type": "git",
