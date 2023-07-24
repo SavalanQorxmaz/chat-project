@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "frontend": "npm start --prefix frontend",
     "backend": "npm start  --prefix backend",
-    "dev": "concurrently \"npm run frontend\" \"npm run backend\""
+    "dev": "concurrently \"npm run frontend\" \"npm run backend\"",
+    "allModulesInstall": "cd frontend && npm install && cd.. &&  cd backend && npm install && cd.. && npm install " 
   },
   "repository": {
     "type": "git",
