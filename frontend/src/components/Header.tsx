@@ -31,12 +31,14 @@ const Header = () => {
             <div className='flex justify-between'>
                 <div className='flex'>
                 <Link className='px-2 py-1 mr-2 rounded-lg flex items-center justify-center transition-all shadow shadow-slate-400  hover:scale-95 hover:shadow-none ' to={'/'}>Home</Link>
-                  <Link className='px-3 py-1 mr-2 rounded-lg flex items-center justify-center transition-all shadow shadow-slate-400  hover:scale-95 hover:shadow-none ' to={'/chat'}>Chat</Link>
-                  <Link className='px-3 py-1 mr-2 rounded-lg flex items-center justify-center transition-all shadow shadow-slate-400  hover:scale-95 hover:shadow-none ' to={'/'}>Third Page</Link>
-                  <Link className='px-3 py-1 mr-2 rounded-lg flex items-center justify-center transition-all shadow shadow-slate-400  hover:scale-95 hover:shadow-none ' to={'/'}>Fourth Page</Link>
-                  <Link className='px-3 py -1 mr-2 rounded-lg flex items-center justify-center transition-all shadow shadow-slate-400  hover:scale-95 hover:shadow-none ' to={'/'}>Fifth Page</Link>
+                  <Link className='px-3 py-1 mr-2 rounded-lg flex items-center justify-center transition-all shadow shadow-slate-400  hover:scale-95 hover:shadow-none ' to={'/'}>Chat</Link>
+            
                 </div>
+                
+             <div className='flex'>
+             <Link className='px-3 py -1 mr-2 rounded-lg flex items-center justify-center transition-all shadow shadow-slate-400  hover:scale-95 hover:shadow-none ' to={'/login-register'}>Login&nbsp;/&nbsp;Register</Link>
             <FontAwesomeIcon onClick={changeThemeF} icon={faLightbulb} size ='xl' cursor={'pointer'}  />
+             </div>
         
             </div>
         </div>

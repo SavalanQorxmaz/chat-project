@@ -25,6 +25,9 @@ else {
     localStorage.setItem('my-project', JSON.stringify(myObject))
 }
 
+
+
+
 const initialState = {
     mode: myObject.theme
 }

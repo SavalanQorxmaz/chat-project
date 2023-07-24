@@ -18,9 +18,10 @@ let myObject:localStorageObjectType = {}
 
 if(myProjectLocalStorage !== null){
     myObject = JSON.parse(myProjectLocalStorage)
-   if(myObject.id === undefined){
-    myObject = {...myObject, ['id']: ''}
-   }
+//    if(myObject.id === undefined){
+//     myObject = {...myObject, ['id']: ''}
+//    }
+myObject.id ??= ''
 
 }
 else {

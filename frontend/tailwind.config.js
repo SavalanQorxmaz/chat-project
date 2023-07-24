@@ -40,8 +40,16 @@ module.exports = {
           '@screen xl': {
             maxWidth: '1200px',
           },
+        },
+        
+        '.width-xs': {
+          margin: 'auto',
+          width: '576px'
         }
-      })
+      }
+      
+      
+      )
     }
   ],
 
