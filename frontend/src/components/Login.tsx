@@ -21,12 +21,12 @@ const Login = ({...props}) => {
 
      
       <label htmlFor="user-name" className='w-full p-3 py-1 m-3 rounded-lg flex items-center justify-center transition-all shadow shadow-slate-400 cursor-pointer  '>
-        <span className='w-1/3 text-right mr-3'>User Name:</span>
+        <span className='w-1/3 text-right mr-3 text-xs'>User Name:</span>
       <input className='w-2/3 outline-none p-1 bg-inherit' id='user-name' type="text" placeholder='Filankes' />
       </label>
      
      <label htmlFor="password" className='w-full p-3 py-1 m-3 rounded-lg flex items-center justify-center transition-all shadow shadow-slate-400 cursor-pointer  '>
-      <span className='w-1/3 text-right mr-3'>Parol:</span>
+      <span className='w-1/3 text-right mr-3 text-xs'>Parol:</span>
      <input className='w-2/3 outline-none p-1 bg-inherit' id='password' type="password" placeholder='********' />
      </label>
       
