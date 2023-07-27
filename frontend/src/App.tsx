@@ -30,10 +30,10 @@ function App() {
     return data
   }
 
-  useEffect(()=>{
-    imOnline()
-  .then(res=>console.log(res))
-  },[])
+  // useEffect(()=>{
+  //   imOnline()
+  // .then(res=>console.log(res))
+  // },[])
 
   const sendData = async () => {
     await fetch('http://localhost:9000',{

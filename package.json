@@ -5,9 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "frontend": "npm  dev --prefix frontend",
-    "backend": "npm  dev  --prefix backend",
-    "dev": "concurrently   \"npm run frontend\" \"npm run backend\""
+    "frontend": "npm run dev --prefix frontend",
+    "backend": "npm run dev  --prefix backend",
+    "frontend1": "npm  dev --prefix frontend",
+    "backend1": "npm  dev  --prefix backend",
+    "dev2": "concurrently   \"npm run frontend\" \"npm run backend\"",
+    "dev": "  npm run backend & npm run frontend",
+    "dev1": "  npm run backend1 & npm run frontend1"
   },
   "repository": {
     "type": "git",
@@ -21,9 +25,6 @@
   },
   "homepage": "https://github.com/SavalanQorxmaz/chat-project#readme",
   "dependencies": {
-    "concurrently": "^8.2.0",
-    "react-sweetalert2": "^0.6.0",
-    "sweetalert2": "^11.7.20",
-    "sweetalert2-react-content": "^5.0.7"
+    "concurrently": "^8.2.0"
   }
 }

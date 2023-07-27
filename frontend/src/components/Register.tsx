@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faEye} from '@fortawesome/free-solid-svg-icons'
 import {faEyeSlash} from '@fortawesome/free-solid-svg-icons'
-import Swal from 'sweetalert2'
+import swal from 'sweetalert2'
 
 
 interface registerDataType {
@@ -107,15 +107,15 @@ e.preventDefault()
     .then(res=>{
 
 if(res==0){
-  Swal.fire({
+  swal.fire({
     icon: 'error',
     title: 'Ugursuz',
-    text: ` yeniden cehd et`,
+    text: ` Istifadeci artiq movcuddu`,
     confirmButtonText: 'Daxil ol'
   })
 }
 else {
-  Swal.fire({
+  swal.fire({
     icon: 'success',
     title: 'Ugurlu qeydiyyat',
     text: ` Welcome  ${registerData.userName} 
