@@ -2,7 +2,14 @@ import React, { useEffect, useRef, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faEye} from '@fortawesome/free-solid-svg-icons'
 import {faEyeSlash} from '@fortawesome/free-solid-svg-icons'
+import Swal from 'sweetalert2'
 
+
+interface registerDataType {
+  userName: string,
+  password: string,
+  confirmPassword: string
+}
 
 const Register = ({...props}) => {
 
@@ -14,7 +21,8 @@ const Register = ({...props}) => {
     confirmPasswordIsReady: false,
   })
   const [allDataIsReady, setAllDataIsReady] = useState(false)
-  const [registerData, setRegisterData] = useState({
+
+  const [registerData, setRegisterData] = useState<registerDataType>({
     userName: '',
     password: '',
     confirmPassword: ''
@@ -25,9 +33,6 @@ const Register = ({...props}) => {
     showConfirmPassword: false
   })
 
-  const userNameRef = useRef()
-  const passwordRef = useRef()
-  const confirmPasswordRef = useRef()
 
 
   const currentRegisterDataF = (e:any)=>{
@@ -87,17 +92,59 @@ useEffect(()=>{
     setAllDataIsReady(false)
 },[dataIsReady])
 
-const registerF = ()=>{
+const registerF = async (e:any)=>{
+  
+e.preventDefault()
+  if(allDataIsReady){
+    await fetch('http://localhost:9000/signup',{
+      method: 'post',
+      body: JSON.stringify(registerData) ,
+      headers:{
+        "Content-Type": "application/json",
+      }
+    })
+    .then(res=>res.json())
+    .then(res=>{
+
+if(res==0){
+  Swal.fire({
+    icon: 'error',
+    title: 'Ugursuz',
+    text: ` yeniden cehd et`,
+    confirmButtonText: 'Daxil ol'
+  })
+}
+else {
+  Swal.fire({
+    icon: 'success',
+    title: 'Ugurlu qeydiyyat',
+    text: ` Welcome  ${registerData.userName} 
+    `,
+    confirmButtonText: 'Ok'
+  })
+  .then(res=>{
+    if(res.isConfirmed){
+      setLoginOrRegister('login')
+    } 
+  })
+}
+      
+      return res
+    })
+
+  }
+
+
 
 }
 
   return (
-    <form className='w-full flex flex-col items-center justify-center  select-none '>
+    <form onSubmit={registerF} className='w-full flex flex-col items-center justify-center  select-none '>
 
      
     <label htmlFor="user-name" className='w-full p-3 py-1 m-3 mb-1 rounded-lg flex items-center justify-center transition-all shadow shadow-slate-400 cursor-pointer  '>
       <span className='w-2/5 text-right mr-3 text-xs whitespace-pre'>User Name:</span>
-    <input ref={userNameRef.current} onChange={currentRegisterDataF}  className='w-2/3 outline-none p-1 bg-inherit' id='user-name' type="text" name='userName' placeholder='Filankes' />
+    <input onChange={currentRegisterDataF}  className='w-2/3 outline-none p-1 bg-inherit' id='user-name' type="text" name='userName' placeholder='Filankes' />
     </label>
 
     <p className={!dataIsReady.userNameIsReady ? 'w-full p-3 py-1 mb-3 rounded-lg   text-red-400 text-center text-xs ': 'hidden'}>Minimum 5 simvol, Herfle baslamalidi</p>
