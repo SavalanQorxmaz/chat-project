@@ -19,27 +19,17 @@ const newUserAddF =  ()=>{
  
 }
 
-// newUserAddF()
-
-
+// NEW USER
 
 app.post('/signup',(req,res)=>{
     let parsedData = []
-    console.log('req.body',req.body.userName)
-    // res.send(req.body)
     fs.readFile('data/users.json', "utf8", (error, jsonFile) => {
         if (error) {
          console.log(error)
          return;
         }
         else{
-
-          
-         
             parsedData = JSON.parse(jsonFile)
-            // console.log(parsedData)
-            // console.log(req.body)
-            // parsedData.forEach(value=> console.log(value.userName) )
            let check =  parsedData.every((value)=>{
             return value.userName != req.body.userName
            })
@@ -61,12 +51,54 @@ app.post('/signup',(req,res)=>{
                 });
             }
             
-             
-          
         }
       })
 
    
 })
+
+
+// LOGIN
+
+
+app.post('/login',(req,res)=>{
+    let parsedData = []
+    fs.readFile('data/users.json', "utf8", (error, jsonFile) => {
+        if (error) {
+         console.log(error)
+         return;
+        }
+        else{
+            parsedData = JSON.parse(jsonFile)
+           let userList =  parsedData.map((value)=>{
+            return value.userName
+           })
+           console.log(userList)
+           console.log(req.body)
+           let userIndex = userList.indexOf(req.body.userName)
+           console.log(userIndex)
+           if(userIndex <0){
+            console.log('movcud deyil')
+            res.send(JSON.stringify(0))
+           } 
+
+           else  if(parsedData[userIndex].password!== req.body.password){
+            console.log('parol yanlisdi')
+            res.send(JSON.stringify(1))
+           }
+            
+            else{
+            
+                console.log('dogrudu')
+                res.send(JSON.stringify(2))
+        }
+      }
+    
+})
+})
+
+
+
+
 
 app.listen(9000)
