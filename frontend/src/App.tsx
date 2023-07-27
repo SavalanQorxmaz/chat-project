@@ -2,18 +2,22 @@ import { useEffect, useState } from "react";
 import {Routes, Route} from 'react-router-dom'
 import Header from "./components/Header";
 import { setScreen } from "./redux/screenSlice";
-import ChatPage from "./pages/ChatPage";
 import LoginRegister from "./pages/LoginRegister";
 import { useDispatch, useSelector } from 'react-redux'
 import {  selecTheme } from './redux/themeSlice'
+import { setUser, selectUser } from "./redux/userSlice";
+import User from "./pages/User";
+import { localStorageObjectType } from "./types";
 
 function App() {
 
   const dispatch = useDispatch()
   const selectedTheme = useSelector(selecTheme)
+  const selectedUser = useSelector(selectUser)
   // EKRAN OLCUSUNU MUEYYEN ETMEK UCUN
   window.addEventListener('resize', () => {
     dispatch(setScreen(document.documentElement.offsetWidth))
+   
   })
 
 
@@ -52,7 +56,7 @@ function App() {
     <div className={selectedTheme === 'dark' ? 'w-full h-screen overflow-y-auto text-sm text-slate-50  bg-slate-950 shadow-lg shadow-slate-400 ' : 'w-full h-screen overflow-y-auto text-sm text-slate-950   bg-slate-50 shadow-lg shadow-slate-400'}>
   <Header />
  <Routes>
-{/* <Route path ='/'    element={<Home/>}/> */}
+<Route path ='/user/:user'    element={<User/>}/>
 <Route path ='/login-register'    element={<LoginRegister/>}/>
  </Routes>
  </div>

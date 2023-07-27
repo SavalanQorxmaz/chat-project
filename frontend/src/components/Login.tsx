@@ -4,11 +4,14 @@ import {faEye} from '@fortawesome/free-solid-svg-icons'
 import {faEyeSlash} from '@fortawesome/free-solid-svg-icons'
 import swal from 'sweetalert2'
 import { useNavigate } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { setUser, selectUser } from '../redux/userSlice'
 
 
 const Login = ({...props}) => {
 
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const {loginOrRegister, setLoginOrRegister} = props
 
   const [loginData, setLoginData] = useState({
@@ -68,7 +71,8 @@ const Login = ({...props}) => {
         confirmButtonText: 'ok'
       })
       .then(res=>{
-        navigate('/')
+        navigate(`/user/${loginData.userName}`)
+        dispatch(setUser({userName:loginData.userName, password:loginData.password}))
       })
      
     }

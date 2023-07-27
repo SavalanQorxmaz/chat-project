@@ -5,8 +5,8 @@ import { localStorageObjectType } from "../types";
 
 interface userInfoType {
     currentUser:{
-        userName:string
-        password: string
+        userName?:string
+        password?: string
     }
 }
 
@@ -16,8 +16,11 @@ let myObject:localStorageObjectType = {}
 
 if(myProjectLocalStorage !== null){
     myObject = JSON.parse(myProjectLocalStorage)
-
-    myObject.currentUser??={['userName']: '',['password']:''}
+    if(myObject.currentUser === undefined){
+        myObject = {...myObject, ['currentUser']:{['userName']: '',['password']:''}}
+        localStorage.setItem('my-project', JSON.stringify(myObject))
+    }
+    // myObject.currentUser ??= {...myObject, ['currentUser']:{['userName']: '',['password']:''}}
 }
 else {
     myObject = {...myObject, ['currentUser']:{['userName']: '',['password']:''}}
@@ -29,8 +32,8 @@ else {
 const initialState:userInfoType = {
 
    currentUser: {
-    userName: '',
-    password: ''
+    userName: myObject.currentUser?.userName,
+    password: myObject.currentUser?.password
    }
 }
 
@@ -43,6 +46,7 @@ const userInfoSlice = createSlice({
             state.currentUser.password = action.payload.password
             myObject = {...myObject, ['currentUser']:{['userName']: action.payload.userName,['password']:action.payload.password}}
             localStorage.setItem('my-project', JSON.stringify(myObject))
+           
         }
         
     }
@@ -51,4 +55,9 @@ const userInfoSlice = createSlice({
 
 export const {setUser} = userInfoSlice.actions
 
-export const selectUser = (state:{userInfo:userInfoType})=>state.userInfo.currentUser
+export const selectUser = (state:{userInfo:userInfoType})=>{
+console.log(state.userInfo.currentUser)
+    return state.userInfo.currentUser
+}
+
+export default userInfoSlice.reducer

@@ -8,3 +8,10 @@ export interface localStorageObjectType {
         password: string
     }
 }
+
+export interface userInfoType {
+    currentUser:{
+        userName:string
+        password: string
+    }
+}
