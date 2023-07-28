@@ -56,7 +56,7 @@ const userInfoSlice = createSlice({
 export const {setUser} = userInfoSlice.actions
 
 export const selectUser = (state:{userInfo:userInfoType})=>{
-console.log(state.userInfo.currentUser)
+// console.log(state.userInfo.currentUser)
     return state.userInfo.currentUser
 }
 

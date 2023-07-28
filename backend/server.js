@@ -98,6 +98,49 @@ app.post('/login',(req,res)=>{
 })
 
 
+// Delete User
+
+
+app.post('/delete-user',(req,res)=>{
+    let parsedData = []
+    fs.readFile('data/users.json', "utf8", (error, jsonFile) => {
+        if (error) {
+            res.send(JSON.stringify(0))
+            console.log(error)
+         return;
+        }
+        else{
+            parsedData = JSON.parse(jsonFile)
+           let userList =  parsedData.map((value)=>{
+           
+            return value.userName
+           })
+           console.log(userList)
+           let userIndex = userList.indexOf(req.body.userName)
+           if(userIndex <0){
+            res.send(JSON.stringify(0))
+           } 
+
+         
+            
+            else{
+                parsedData.splice(userIndex,1)
+                fs.writeFile('data/users.json', JSON.stringify( parsedData), (error) => {
+                    if (error) {
+                        console.log("error: ", error);
+                        return;
+                    }
+                   
+                });
+                res.send(JSON.stringify(1))
+        }
+      }
+    
+})
+
+})
+
+
 
 
 

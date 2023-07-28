@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faEye} from '@fortawesome/free-solid-svg-icons'
 import {faEyeSlash} from '@fortawesome/free-solid-svg-icons'
@@ -12,11 +12,12 @@ const Login = ({...props}) => {
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const selectedUser = useSelector(selectUser)
   const {loginOrRegister, setLoginOrRegister} = props
 
   const [loginData, setLoginData] = useState({
-    userName:'',
-    password: ''
+    userName:selectedUser.userName!=undefined? selectedUser.userName: '',
+    password: selectedUser.password!=undefined? selectedUser.password: ''
   })
   const [showPassword, setShowPassword] = useState(false)
 
@@ -27,7 +28,7 @@ const Login = ({...props}) => {
   const resetLoginDataF = ()=>{
     setLoginData({
       userName: '',
-      password: '',  
+      password: ''
   })
 
   setShowPassword(false)
@@ -71,8 +72,9 @@ const Login = ({...props}) => {
         confirmButtonText: 'ok'
       })
       .then(res=>{
-        navigate(`/user/${loginData.userName}`)
         dispatch(setUser({userName:loginData.userName, password:loginData.password}))
+        navigate(`/user/${loginData.userName}`)
+       
       })
      
     }
@@ -84,6 +86,8 @@ const Login = ({...props}) => {
 
   }
 
+ 
+
 
 
   return (
@@ -92,12 +96,12 @@ const Login = ({...props}) => {
      
       <label htmlFor="user-name" className='w-full p-3 py-1 m-3 rounded-lg flex items-center justify-center transition-all shadow shadow-slate-400 cursor-pointer  '>
         <span className='w-1/3 text-right mr-3 text-xs'>User Name:</span>
-      <input onChange={currentLoginDataF} className='w-2/3 outline-none p-1 bg-inherit' id='user-name' type="text" name='userName' placeholder='Filankes' />
+      <input defaultValue={selectedUser.userName} onChange={currentLoginDataF} className='w-2/3 outline-none p-1 bg-inherit' id='user-name' type="text" name='userName' placeholder='Filankes' />
       </label>
      <p className={loginData.userName.length <1 ? 'w-full p-3 py-1 mb-3  text-center  text-red-400  text-xs ': 'hidden'}>Istifadeci adi daxil et</p>
      <label htmlFor="password" className='w-full p-3 py-1 m-3 rounded-lg flex items-center justify-center transition-all shadow shadow-slate-400 cursor-pointer  '>
       <span className='w-1/3 text-right mr-3 text-xs'>Parol:</span>
-     <input onChange={currentLoginDataF} className='w-2/3 outline-none p-1 bg-inherit' id='password' name='password' type="password" placeholder='********' />
+     <input defaultValue={selectedUser.password} onChange={currentLoginDataF} className='w-2/3 outline-none p-1 bg-inherit' id='password' name='password' type={showPassword?'text': 'password'} placeholder='********' />
      {
     showPassword
     ?

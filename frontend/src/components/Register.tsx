@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faEye} from '@fortawesome/free-solid-svg-icons'
 import {faEyeSlash} from '@fortawesome/free-solid-svg-icons'
 import swal from 'sweetalert2'
+import { useDispatch } from 'react-redux'
+import { setUser } from '../redux/userSlice'
 
 
 interface registerDataType {
@@ -13,6 +15,7 @@ interface registerDataType {
 
 const Register = ({...props}) => {
 
+  const dispatch = useDispatch()
   const {loginOrRegister, setLoginOrRegister} = props
   
   const [dataIsReady, setDataIsReady] = useState({
@@ -128,7 +131,7 @@ else {
     } 
   })
 }
-      
+dispatch(setUser({userName:registerData.userName, password:registerData.password}))
       return res
     })
 
